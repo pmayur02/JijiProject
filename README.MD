@@ -171,7 +171,7 @@ const modelData = [
 ];
 
 
-DB Schema
+## DB Schema
 
 create table queries (
   id uuid primary key default gen_random_uuid(),
