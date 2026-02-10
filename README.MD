@@ -170,4 +170,29 @@ const modelData = [
   }
 ];
 
+
+DB Schema
+
+create table queries (
+  id uuid primary key default gen_random_uuid(),
+  question text,
+  answer text,
+  user_id uuid references auth.users(id),
+  created_at timestamp default now()
+);
+
+create table resources (
+  id uuid primary key default gen_random_uuid(),
+  resource_type text check (resource_type in ('ppt','video')),
+  storage_url text,
+  query_id uuid references public.queries(id),
+  created_at timestamp default now()
+);
+
+create table Profile (
+  id uuid primary key references auth.users(id) on delete cascade,
+  email text,
+  name text,
+  created_at timestamp default now()
+);
  
